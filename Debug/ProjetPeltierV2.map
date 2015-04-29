@@ -1,0 +1,63 @@
+
+SYMBOLS BY NAME
+
+     800            RAM_Size            
+     200            RAM_Start_Address   
+    12d6 CODE       _I2C_Read           
+    11de CODE       _I2C_StartCond      
+    11fe CODE       _I2C_Stop           
+    12c8 CODE       _I2C_Write          
+    12e4 CODE       _PWM_Init           
+    130c CODE       _PWM_heater         
+       0            ___begin_IDATA0     
+     200 UDATA0     ___begin_UDATA0     
+    1342 CODE       ___debug_catch_me_here
+    134a CODE       ___do_debug_operation
+     204 UDATA0     ___end_UDATA0       
+    1388 CODE       ___int16_div        
+    13ae CODE       ___uint16_div       
+    1100 CODE       _changeClock        
+     202 UDATA0     _dbgCntrlWord       
+     200 UDATA0     _dbgCommWord        
+    136a CODE       _debug_printf       
+    1292 CODE       _getByte            
+    1128 CODE       _main               
+    13c6 CODE       _memcpy             
+    13d6 CODE       _memset             
+    127a CODE       _readBite           
+    115a CODE       _readTmp            
+    1220 CODE       _receive_ack        
+    1238 CODE       _sendAddr           
+    120c CODE       _send_ack           
+
+
+SYMBOLS BY VALUE
+
+       0            ___begin_IDATA0     
+     200            RAM_Start_Address   
+     200 UDATA0     ___begin_UDATA0     
+     200 UDATA0     _dbgCommWord        
+     202 UDATA0     _dbgCntrlWord       
+     204 UDATA0     ___end_UDATA0       
+     800            RAM_Size            
+    1100 CODE       _changeClock        
+    1128 CODE       _main               
+    115a CODE       _readTmp            
+    11de CODE       _I2C_StartCond      
+    11fe CODE       _I2C_Stop           
+    120c CODE       _send_ack           
+    1220 CODE       _receive_ack        
+    1238 CODE       _sendAddr           
+    127a CODE       _readBite           
+    1292 CODE       _getByte            
+    12c8 CODE       _I2C_Write          
+    12d6 CODE       _I2C_Read           
+    12e4 CODE       _PWM_Init           
+    130c CODE       _PWM_heater         
+    1342 CODE       ___debug_catch_me_here
+    134a CODE       ___do_debug_operation
+    136a CODE       _debug_printf       
+    1388 CODE       ___int16_div        
+    13ae CODE       ___uint16_div       
+    13c6 CODE       _memcpy             
+    13d6 CODE       _memset             
