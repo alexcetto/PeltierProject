@@ -33,4 +33,5 @@
 
 # Special  MIPS
 *.asm
-Debug/*
+Debug/
+ProjetPeltierV2.hzs
