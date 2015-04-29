@@ -33,5 +33,6 @@
 
 # Special  MIPS
 *.asm
-Debug/
-ProjetPeltierV2.hzs
+Debug/*
+*.bak
+*.hzo

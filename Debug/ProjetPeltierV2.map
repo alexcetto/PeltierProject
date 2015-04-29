@@ -3,61 +3,61 @@ SYMBOLS BY NAME
 
      800            RAM_Size            
      200            RAM_Start_Address   
-    12d6 CODE       _I2C_Read           
-    11de CODE       _I2C_StartCond      
-    11fe CODE       _I2C_Stop           
-    12c8 CODE       _I2C_Write          
-    12e4 CODE       _PWM_Init           
-    130c CODE       _PWM_heater         
+    12c0 CODE       _I2C_Read           
+    11c8 CODE       _I2C_StartCond      
+    11e8 CODE       _I2C_Stop           
+    12b2 CODE       _I2C_Write          
+    12f6 CODE       _PWM                
+    12ce CODE       _PWM_Init           
        0            ___begin_IDATA0     
      200 UDATA0     ___begin_UDATA0     
-    1342 CODE       ___debug_catch_me_here
-    134a CODE       ___do_debug_operation
+    132a CODE       ___debug_catch_me_here
+    1332 CODE       ___do_debug_operation
      204 UDATA0     ___end_UDATA0       
-    1388 CODE       ___int16_div        
-    13ae CODE       ___uint16_div       
-    1100 CODE       _changeClock        
+    1370 CODE       ___int16_div        
+    1396 CODE       ___int16_mod        
+    13bc CODE       ___uint16_div       
      202 UDATA0     _dbgCntrlWord       
      200 UDATA0     _dbgCommWord        
-    136a CODE       _debug_printf       
-    1292 CODE       _getByte            
-    1128 CODE       _main               
-    13c6 CODE       _memcpy             
-    13d6 CODE       _memset             
-    127a CODE       _readBite           
-    115a CODE       _readTmp            
-    1220 CODE       _receive_ack        
-    1238 CODE       _sendAddr           
-    120c CODE       _send_ack           
+    1352 CODE       _debug_printf       
+    127c CODE       _getByte            
+    1100 CODE       _main               
+    13d4 CODE       _memcpy             
+    13e4 CODE       _memset             
+    1264 CODE       _readBite           
+    1144 CODE       _readTmp            
+    120a CODE       _receive_ack        
+    1222 CODE       _sendAddr           
+    11f6 CODE       _send_ack           
 
 
 SYMBOLS BY VALUE
 
        0            ___begin_IDATA0     
      200            RAM_Start_Address   
-     200 UDATA0     ___begin_UDATA0     
      200 UDATA0     _dbgCommWord        
+     200 UDATA0     ___begin_UDATA0     
      202 UDATA0     _dbgCntrlWord       
      204 UDATA0     ___end_UDATA0       
      800            RAM_Size            
-    1100 CODE       _changeClock        
-    1128 CODE       _main               
-    115a CODE       _readTmp            
-    11de CODE       _I2C_StartCond      
-    11fe CODE       _I2C_Stop           
-    120c CODE       _send_ack           
-    1220 CODE       _receive_ack        
-    1238 CODE       _sendAddr           
-    127a CODE       _readBite           
-    1292 CODE       _getByte            
-    12c8 CODE       _I2C_Write          
-    12d6 CODE       _I2C_Read           
-    12e4 CODE       _PWM_Init           
-    130c CODE       _PWM_heater         
-    1342 CODE       ___debug_catch_me_here
-    134a CODE       ___do_debug_operation
-    136a CODE       _debug_printf       
-    1388 CODE       ___int16_div        
-    13ae CODE       ___uint16_div       
-    13c6 CODE       _memcpy             
-    13d6 CODE       _memset             
+    1100 CODE       _main               
+    1144 CODE       _readTmp            
+    11c8 CODE       _I2C_StartCond      
+    11e8 CODE       _I2C_Stop           
+    11f6 CODE       _send_ack           
+    120a CODE       _receive_ack        
+    1222 CODE       _sendAddr           
+    1264 CODE       _readBite           
+    127c CODE       _getByte            
+    12b2 CODE       _I2C_Write          
+    12c0 CODE       _I2C_Read           
+    12ce CODE       _PWM_Init           
+    12f6 CODE       _PWM                
+    132a CODE       ___debug_catch_me_here
+    1332 CODE       ___do_debug_operation
+    1352 CODE       _debug_printf       
+    1370 CODE       ___int16_div        
+    1396 CODE       ___int16_mod        
+    13bc CODE       ___uint16_div       
+    13d4 CODE       _memcpy             
+    13e4 CODE       _memset             
