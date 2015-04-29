@@ -33,3 +33,4 @@
 
 # Special  MIPS
 *.asm
+Debug/*
