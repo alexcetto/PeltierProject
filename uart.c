@@ -4,7 +4,7 @@ void initUART(void){
   // RX1 = P3DIR = BIT5
   // TX1 = P3DIR = BIT4
 
-    CCTL0 = CCIE;                       // CCR0 interrupt enabled
+/*    CCTL0 = CCIE;                       // CCR0 interrupt enabled
     CCR0 = 100;
     UCTL0 |= SWRST;                     // RESET UART
     UTCTL0 |= SSEL0;                    // UCLK = ACLK
@@ -24,7 +24,16 @@ void initUART(void){
     P3DIR |= BIT4;
     
     _EINT();
-
+*/
+ P3SEL |= 0x30;                        	// Selectionne les pins d'entrée/sortie de l'UART, PIN3.4,5 = USART0 TXD/RXD
+  ME1 |= UTXE0 + URXE0;                 	// Active USART0 TXD/RXD
+  UCTL0 |= CHAR;                        	// format des caractères = 8 bits
+  UTCTL0 |= SSEL0;                      	// UCLK = ACLK 32.768kHz ,  UART Module avec une clock d'une certaine fréquence
+  UBR00 = 0x03;                         	// 32k/9600 - 3.41 (on garde la partie entiere)- Met le générateur de baud a une valeur correcte pour obtenir un baud rate correct depuis la clock source
+  UBR10 = 0x00;                         	//
+  UMCTL0 = 0x4A;                        	// Modulation - 8 * 0,413 = 3,304 - 3 bits des 8 bits doivent avoir une valeur 1- ce qui donne 01001010 = 0x4A (voir rapport final/datasheet)
+  UCTL0 &= ~SWRST;                      	// Initialize USART state machine
+  IE1 |= URXIE0;                        	// Enable USART1 RX interrupt
   return;
 }
 
@@ -47,7 +56,7 @@ void UARTprintTerm(const char * str)
 void UARTmsgAccueil(void)
 {
     UARTprintTerm("\n\r===========================================================================\n");
-    UARTprintTerm("\rBievenue dans le menu de gestion de la communication avec le microcontrôleur\n");
+    UARTprintTerm("\rBievenue dans la gestion du module peltier\n");
     UARTprintTerm("\r===========================================================================\n");
     UARTprintTerm("\r===  Menu  ===\n");
     UARTprintTerm("\rTouche 't' : Affichage de la température\n");
