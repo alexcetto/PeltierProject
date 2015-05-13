@@ -9,10 +9,10 @@
       <file file_name="i2c.h" Name="i2c.h" />
       <file file_name="pwm.c" Name="pwm.c" />
       <file file_name="pwm.h" Name="pwm.h" />
-      <file file_name="../../../../../../../Documents/Projet Archi/src/PeltierProject/uart.c" Name="uart.c" />
-      <file file_name="../../../../../../../Documents/Projet Archi/src/PeltierProject/uart.h" Name="uart.h" />
       <file file_name="regulation.c" Name="regulation.c" />
       <file file_name="regulation.h" Name="regulation.h" />
+      <file file_name="../../../../../../../../Documents/Projet Archi/src/V2/PeltierProject/uart.c" Name="uart.c" />
+      <file file_name="../../../../../../../../Documents/Projet Archi/src/V2/PeltierProject/uart.h" Name="uart.h" />
     </folder>
     <folder Name="System Files" >
       <configuration filter="xml" Name="Common" />
@@ -21,6 +21,7 @@
         <configuration Name="Common" file_type="Section Placement" />
       </file>
     </folder>
+    <configuration linker_scanf_fp_enabled="Yes" linker_printf_fp_enabled="Yes" Name="Debug" />
   </project>
   <configuration build_debug_information="Yes" Name="Debug" />
   <configuration optimize_jump_chaining="Yes" optimize_block_locality="Yes" optimize_tail_merging="Yes" c_preprocessor_definitions="NDEBUG" optimize_cross_calling="Standard" build_debug_information="No" optimize_jump_threading="Yes" Name="Release" optimize_dead_code="Yes" optimize_cross_jumping="Yes" optimize_copy_propagation="Yes" />

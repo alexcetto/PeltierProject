@@ -11,6 +11,8 @@ void initUART(void){
   UMCTL0 = 0x4A;                        	// Modulation - 8 * 0,413 = 3,304 - 3 bits des 8 bits doivent avoir une valeur 1- ce qui donne 01001010 = 0x4A (voir rapport final/datasheet)
   UCTL0 &= ~SWRST;                      	// Initialize USART state machine
   IE1 |= URXIE0;                        	// Enable USART1 RX interrupt
+
+  _EINT();           	// Entre en mode interruption
   return;
 }
 

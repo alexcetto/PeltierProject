@@ -1,5 +1,6 @@
 #include "i2c.h"
 #include "pwm.h"
+#include "uart.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <msp430x14x.h>
@@ -11,6 +12,7 @@ int e = 0;
 unsigned short retour;
 char conversionStr[50];
 int flagEcritureTemp = 0;
+float temp;
 
 void changeClock(void)
 {
@@ -31,7 +33,8 @@ void changeClock(void)
 
 void main(void)
 {
-        float temp;
+        
+        const char * tempStr;
 	int erreur;
         int i = 0;
 
@@ -53,24 +56,87 @@ void main(void)
                   PWM(350);
             }
             i++;
-            if(!(i%1000)){debug_printf("%d\n", temp);}
+            if(!(i%1000)){debug_printf("%f\n", temp);}
+
+            if(flagEcritureTemp == 1)
+            {
+              sprintf(conversionStr, "%f", temp);
+              UARTprintTerm(conversionStr);
+              flagEcritureTemp = 0;
+              UARTprintTerm("\n");
+              UARTmsgAccueil();
+            }
           }
     
 }
 
-/*void main(void)
+void usart0_rx (void) __interrupt[USART0RX_VECTOR]
 {
-        
-	WDTCTL = WDTPW + WDTHOLD;     // Stop watchdog
-        //changeClock();
+  static char recupConsigne[2];
+  int z;
+  static int indiceConsigne = -1;
+  const char * tempStr;
 
-        PWM_Init();
-       
-        for(;;)
-        {
-          
-          PWM_heater();
-          
-        }
-    
-}*/
+  if(indiceConsigne == 1)  //lors de la saisie d'une nouvelle consigne, il y a une interruption par appuie sur une touche pour la saisie, donc on traite separement chaque chiffre
+  {
+        recupConsigne[indiceConsigne] = RXBUF0;  //conserve dans un tableau la valeur saisie
+        indiceConsigne = -1;  //re-initialise la prise d'une consigne, dans le cas plus tard d'une nouvelle saisie de consigne  
+        TXBUF0 = RXBUF0; //réaffiche valeur saisi par l'utilisateur
+        consigneInt = atoi(recupConsigne);  //transforme la valeur en char en int
+        UARTprintTerm("\n\r                                                         \r");
+        sprintf(conversionStr, "\rLa température de consigne est désormais  de : %d°C\n\n", consigneInt);  //reaffiche la nouvelle consigne que l'utilisateur vient de saisir
+        UARTprintTerm(conversionStr);
+        UARTmsgAccueil();  //reffiche menu
+  }
+  if(indiceConsigne == 0)  //si c'est la saisie du premier chiffre de la nouvelle consigne
+  {
+        recupConsigne[indiceConsigne] = RXBUF0;  //conserve le chiffre
+        indiceConsigne = indiceConsigne + 1;   //incrmeente indice tableau
+        TXBUF0 = RXBUF0;  //reaffiche a l'utilisateur la valeur saisi
+  }
+
+
+  if(RXBUF0 == 't')   //si c'est l'affichage de la temperature, on active le flag de l'affichage dans la fonction main
+  {
+      //UARTprintTerm("\n\r                                                         \r");
+      flagEcritureTemp = 1;
+
+  }
+  else if(RXBUF0 == 's')  //si c'est l'arret de l'affichage de la temperature
+  {
+      UARTmsgAccueil();  //reaffiche message d'accueil
+      flagEcritureTemp = 0;
+      e = 1;
+  }
+  else if(RXBUF0 == 'c')  //si c'est la prise d'une nouvelle consigne
+  {
+        UARTprintTerm("\n\r                                                         \r");
+        UARTprintTerm("\rSaissisez une valeur pour la consigne : ");   //on affiche la demande de saisi de la consigne, et incremente indice tableau pour conserver la valeur saisi par l'utilisateur
+        indiceConsigne = indiceConsigne + 1;
+  }
+  else if(RXBUF0 == 'p')   //si c'est l'affichage de la consigne, on l'affiche
+  {
+          UARTprintTerm("\n\r                                                         \r");
+          sprintf(conversionStr, "\rLa température de consigne est actuellement  de : %d°C\n\n", consigneInt);
+          UARTprintTerm(conversionStr);     
+          UARTmsgAccueil();
+
+
+  }
+  else if(RXBUF0 == 'l')   //si c'est valeur 'l', on met en route pwm
+  {
+      P1OUT |= 0x08;  //DRV593 pin shutdown ON
+      TACTL |= MC1 + MC0;  //reset counter (MC0) et up mode (MC1)
+      TXBUF0 = RXBUF0; //réaffiche valeur saisi par l'utilisateur
+      UARTprintTerm("\n\rDémarrage de la régulation PWM...\n");
+      UARTmsgAccueil();
+  }
+  else if(RXBUF0 == 'm') //si c'est valeur 'm', on met arrete pwm
+  {
+      P1OUT &= ~0x08;     //DRV593 pin shutdown OFF
+      TACTL |= MC1 + MC0;   //reset counter (MC0) et up mode (MC1)
+      TXBUF0 = RXBUF0; //réaffiche valeur saisi par l'utilisateur
+      UARTprintTerm("\n\rArret de la régulation PWM...\n");
+      UARTmsgAccueil();
+  }
+}
