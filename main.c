@@ -6,7 +6,6 @@
 #include <__cross_studio_io.h>
 
 
-
 int consigneInt = 25;
 int e = 0;
 unsigned short retour;
@@ -32,7 +31,7 @@ void changeClock(void)
 
 void main(void)
 {
-        int temp;
+        float temp;
 	int erreur;
         int i = 0;
 
@@ -40,16 +39,17 @@ void main(void)
         //changeClock();
 
         PWM_Init();
-       // initUART();
-        
 
+        initUART();
+        UARTmsgAccueil();
+  
         for(;;)
         {
             temp = readTmp(0x94);   //lit la température du capteur TMP101, avec l'adresse de l'esclave
             erreur = temp;  //distincte l'erreur et la temperature
             if (erreur > 0)
             {
-                  //debug_printf("%d\n", temp);
+                  debug_printf("%f\n", temp);
                   PWM(350);
             }
             i++;

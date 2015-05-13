@@ -2,13 +2,17 @@
 #include <msp430x14x.h>
 #include "i2c.h"
 
+#define INC_12 0.625
+#define SHIFT_12 0
 
-unsigned short readTmp(unsigned char addr)
+float readTmp(unsigned char addr)
 {
     int temp = 0;
-    unsigned char byte1 = 0;
-    unsigned char byte2 = 0;
-
+    unsigned char bytes[] = {0x00, 0x00};
+    char signe;
+    int length;
+    int tmp;
+    int j;
     
     //On passe en mode ecriture, le maitre va communiquer avec l'esclave pour lui envoyer l'adresse
     I2C_Write();
@@ -26,7 +30,7 @@ unsigned short readTmp(unsigned char addr)
 
     if (receive_ack() == 0)  //si on a recu l'ACK, on récupére le contenu des registres 1 & 2 du registre de température
     {
-        byte1 = getByte();
+        bytes[0] = getByte();
 
         // Passez en mode ecriture, pour donner l'ACK qu'on a bien lu la donnée
         I2C_Write();
@@ -36,16 +40,23 @@ unsigned short readTmp(unsigned char addr)
         // repasse en mode lecture pour recevoir le prochain octet
         I2C_Read();
 
-        byte2 = getByte();
+        bytes[1] = getByte();
 
         // Passez en mode ecriture, pour donner l'ACK qu'on a bien lu la donnée
         I2C_Write();
         send_ack();
 
         I2C_Stop();
-        temp = byte1 << 4;  //décale de 4, pour "accueillir" les 4 bits de l'octet2
-        temp |= byte2 >> 4; //rajoute les 4 bits de l'octet2
-        temp = temp /16; //pour avoir la bonne température
+
+        tmp = 0;
+	temp = 1.0;
+	signe = 0x80 & bytes[0];
+	bytes[0] &= ~0x80;
+	tmp |= (bytes[1] >> 4) | ( (int)bytes[0] << 4  ); 			
+	tmp >>= SHIFT_12;	
+	if ( signe ) tmp |= 0xF800;	
+	temp = tmp;
+	temp = temp * INC_12;
     }
     else
     {

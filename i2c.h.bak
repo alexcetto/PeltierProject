@@ -1,7 +1,7 @@
 #ifndef __I2C__
 #define __I2C__
 
-unsigned short readTmp(unsigned char addr);
+unsigned char readTmp(unsigned char addr);
 void I2C_StartCond(void);
 void I2C_Stop(void);
 void send_ack(void);

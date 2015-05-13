@@ -3,61 +3,75 @@ SYMBOLS BY NAME
 
      800            RAM_Size            
      200            RAM_Start_Address   
-    12c0 CODE       _I2C_Read           
-    11c8 CODE       _I2C_StartCond      
-    11e8 CODE       _I2C_Stop           
-    12b2 CODE       _I2C_Write          
-    12f6 CODE       _PWM                
-    12ce CODE       _PWM_Init           
+    1324 CODE       _I2C_Read           
+    122c CODE       _I2C_StartCond      
+    124c CODE       _I2C_Stop           
+    1316 CODE       _I2C_Write          
+    135a CODE       _PWM                
+    1332 CODE       _PWM_Init           
+    13b2 CODE       _UARTmsgAccueil     
+    1394 CODE       _UARTprintTerm      
        0            ___begin_IDATA0     
      200 UDATA0     ___begin_UDATA0     
-    132a CODE       ___debug_catch_me_here
-    1332 CODE       ___do_debug_operation
+    143a CODE       ___debug_catch_me_here
+    1442 CODE       ___do_debug_operation
      204 UDATA0     ___end_UDATA0       
-    1370 CODE       ___int16_div        
-    1396 CODE       ___int16_mod        
-    13bc CODE       ___uint16_div       
+    14de CODE       ___float32_mul      
+    15f2 CODE       ___float32_to_int16 
+    1480 CODE       ___int16_mod        
+    15bc CODE       ___int16_to_float32 
+    14a6 CODE       ___uint16_div       
+    15c8 CODE       ___uint16_to_float32
+    15d2 CODE       ___uint16_to_float32_aux
      202 UDATA0     _dbgCntrlWord       
      200 UDATA0     _dbgCommWord        
-    1352 CODE       _debug_printf       
-    127c CODE       _getByte            
+    1462 CODE       _debug_printf       
+    12e0 CODE       _getByte            
+    1360 CODE       _initUART           
     1100 CODE       _main               
-    13d4 CODE       _memcpy             
-    13e4 CODE       _memset             
-    1264 CODE       _readBite           
-    1144 CODE       _readTmp            
-    120a CODE       _receive_ack        
-    1222 CODE       _sendAddr           
-    11f6 CODE       _send_ack           
+    14be CODE       _memcpy             
+    14ce CODE       _memset             
+    12c8 CODE       _readBite           
+    1166 CODE       _readTmp            
+    126e CODE       _receive_ack        
+    1286 CODE       _sendAddr           
+    125a CODE       _send_ack           
 
 
 SYMBOLS BY VALUE
 
        0            ___begin_IDATA0     
      200            RAM_Start_Address   
-     200 UDATA0     _dbgCommWord        
      200 UDATA0     ___begin_UDATA0     
+     200 UDATA0     _dbgCommWord        
      202 UDATA0     _dbgCntrlWord       
      204 UDATA0     ___end_UDATA0       
      800            RAM_Size            
     1100 CODE       _main               
-    1144 CODE       _readTmp            
-    11c8 CODE       _I2C_StartCond      
-    11e8 CODE       _I2C_Stop           
-    11f6 CODE       _send_ack           
-    120a CODE       _receive_ack        
-    1222 CODE       _sendAddr           
-    1264 CODE       _readBite           
-    127c CODE       _getByte            
-    12b2 CODE       _I2C_Write          
-    12c0 CODE       _I2C_Read           
-    12ce CODE       _PWM_Init           
-    12f6 CODE       _PWM                
-    132a CODE       ___debug_catch_me_here
-    1332 CODE       ___do_debug_operation
-    1352 CODE       _debug_printf       
-    1370 CODE       ___int16_div        
-    1396 CODE       ___int16_mod        
-    13bc CODE       ___uint16_div       
-    13d4 CODE       _memcpy             
-    13e4 CODE       _memset             
+    1166 CODE       _readTmp            
+    122c CODE       _I2C_StartCond      
+    124c CODE       _I2C_Stop           
+    125a CODE       _send_ack           
+    126e CODE       _receive_ack        
+    1286 CODE       _sendAddr           
+    12c8 CODE       _readBite           
+    12e0 CODE       _getByte            
+    1316 CODE       _I2C_Write          
+    1324 CODE       _I2C_Read           
+    1332 CODE       _PWM_Init           
+    135a CODE       _PWM                
+    1360 CODE       _initUART           
+    1394 CODE       _UARTprintTerm      
+    13b2 CODE       _UARTmsgAccueil     
+    143a CODE       ___debug_catch_me_here
+    1442 CODE       ___do_debug_operation
+    1462 CODE       _debug_printf       
+    1480 CODE       ___int16_mod        
+    14a6 CODE       ___uint16_div       
+    14be CODE       _memcpy             
+    14ce CODE       _memset             
+    14de CODE       ___float32_mul      
+    15bc CODE       ___int16_to_float32 
+    15c8 CODE       ___uint16_to_float32
+    15d2 CODE       ___uint16_to_float32_aux
+    15f2 CODE       ___float32_to_int16 
