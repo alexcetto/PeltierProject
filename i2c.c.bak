@@ -1,9 +1,10 @@
 #include <stdlib.h>
 #include <msp430x14x.h>
 #include "i2c.h"
+#include "uart.h"
 
-#define INC_12 0.625
-#define SHIFT_12 0
+#define INC_12    0.625
+#define SHIFT_12  0
 
 float readTmp(unsigned char addr)
 {
@@ -57,6 +58,7 @@ float readTmp(unsigned char addr)
 	if ( signe ) tmp |= 0xF800;	
 	temp = tmp;
 	temp = temp * INC_12;
+        //temp /= 10;
     }
     else
     {

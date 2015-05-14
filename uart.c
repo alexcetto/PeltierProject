@@ -39,7 +39,6 @@ void UARTmsgAccueil(void)
     UARTprintTerm("\r===========================================================================\n");
     UARTprintTerm("\r===  Menu  ===\n");
     UARTprintTerm("\rTouche 't' : Affichage de la température\n");
-    UARTprintTerm("\rTouche 's' : Arrêt de l'affichage de la température\n");
     UARTprintTerm("\rTouche 'c' : Saisi de la consigne de température\n");
     UARTprintTerm("\rTouche 'p' : Affichage de la température de consigne\n");
     UARTprintTerm("\rTouche 'l' : Démarrer la régulation PWM\n");

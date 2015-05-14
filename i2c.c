@@ -54,10 +54,11 @@ float readTmp(unsigned char addr)
 	signe = 0x80 & bytes[0];
 	bytes[0] &= ~0x80;
 	tmp |= (bytes[1] >> 4) | ( (int)bytes[0] << 4  ); 			
-	tmp >> SHIFT_12;	
+	tmp >>= SHIFT_12;	
 	if ( signe ) tmp |= 0xF800;	
 	temp = tmp;
 	temp = temp * INC_12;
+        temp /= 10;
     }
     else
     {

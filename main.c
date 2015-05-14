@@ -102,12 +102,6 @@ void usart0_rx (void) __interrupt[USART0RX_VECTOR]
       flagEcritureTemp = 1;
 
   }
-  else if(RXBUF0 == 's')  //si c'est l'arret de l'affichage de la temperature
-  {
-      UARTmsgAccueil();  //reaffiche message d'accueil
-      flagEcritureTemp = 0;
-      e = 1;
-  }
   else if(RXBUF0 == 'c')  //si c'est la prise d'une nouvelle consigne
   {
         UARTprintTerm("\n\r                                                         \r");
