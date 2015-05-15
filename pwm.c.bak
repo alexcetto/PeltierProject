@@ -8,7 +8,7 @@ void PWM_Init(void)
   P1DIR |= BIT2 + BIT3;                 // P1.2 et P1.3 en sortie
   P1SEL |= BIT2;                        // P1.2 sélection
 
-  P1OUT &= ~BIT3;                               //DRV593 pin shutdown OFF
+  P1OUT |= BIT3;                               //DRV593 pin shutdown OFF
   TACTL |= MC1 + MC0;                           //reset counter (MC0) et up mode (MC1)
 }
 

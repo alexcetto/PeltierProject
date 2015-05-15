@@ -8,7 +8,8 @@
 #include <__cross_studio_io.h>
 
 
-int consigneInt = 25;
+int consigneInt = -5;
+float consigneFloat;
 int e = 0;
 unsigned short retour;
 char conversionStr[50];
@@ -46,7 +47,7 @@ void main(void)
 
         initUART();
         UARTmsgAccueil();
-        regulation(consigneInt);
+        //regulation(consigneInt);
         for(;;)
         {
             temp = readTmp(0x94);   //lit la température du capteur TMP101, avec l'adresse de l'esclave
@@ -58,6 +59,18 @@ void main(void)
               flagEcritureTemp = 0;
               UARTprintTerm("\n");
               UARTmsgAccueil();
+            }
+            consigneFloat = consigneInt * 1.0;
+            //REG_OnOff();
+            REG_PidClear();
+            regulation(consigneFloat);
+
+            //PWM(800);
+
+            i++;
+            if(!(i%500))
+            {
+              debug_printf("%f\n", temp);
             }
           }
     

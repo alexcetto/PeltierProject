@@ -5,6 +5,7 @@ void REG_Init();
 void REG_OnOff();
 void REG_Tor(float);
 void REG_Pid(float);
+void REG_PidClear(void);
 
 extern float prev_temp;
 extern unsigned char marche;

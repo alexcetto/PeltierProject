@@ -1,6 +1,7 @@
 #include <msp430x14x.h>
 #include <math.h>
 #include "i2c.h"
+#include <__cross_studio_io.h>
 /*
 --- Algo ---
 Tous les x millisecondes, faire :
@@ -53,11 +54,11 @@ si le module est en marche */
 /* Application de la commande */
 void REG_Consigne(int consigne)
 {	
-	if (abs(consigne) < 249 )
-		CCR1 = 250 + consigne;
+	if (abs(consigne) < 499 )
+		CCR1 = 500 + consigne;
 	else
 		if ( consigne > 0 )		
-			CCR1 = 490;
+			CCR1 = 990;
 		else
 			CCR1 = 10;
 
@@ -75,15 +76,18 @@ void regulation(float consigne){
 
 // Méthode heuristique de ZIEGLER NICHOLS
 			
-    Kp = 27.520;
-    Ki = 18.25;
-    Kd = 1.131;
+    Kp = 60;
+    Ki = 240;
+    Kd = 0.5;
     dt = 0.301; //3915.5;
+  
+    //debug_printf("%f\n", consigne);
 
     erreur = consigne - CurrentTemp;
     integrale = integrale + erreur*dt;
     derive = (prev_erreur - erreur);
 
+    //debug_printf("erreur : %f\nintegrale : %f\nderive : %f\n", erreur, integrale, derive);
     // Test division par zéro
     if ( fabs(derive) > 10e-4 ) 
             derive = derive/dt;
@@ -92,10 +96,16 @@ void regulation(float consigne){
 
     // Evaluation de la consigne via méthode KN
     sortie = ( (Kp*erreur) + (Ki*integrale) + (Kd*derive) );
+
+
+    debug_printf("%d\n", sortie);
     
     // PWM INIT A REMETTRE APRES
-    REG_OnOff();
+    //REG_OnOff();
+    REG_PidClear();
     REG_Consigne(sortie);
+
+    //debug_printf("Sortie : %d\n", sortie);
 	
     prev_erreur = erreur;
 
