@@ -1,4 +1,5 @@
 #include <msp430x14x.h>
+#include "regulation.h"
 
 void initUART(void){
   
@@ -34,14 +35,23 @@ void UARTprintTerm(const char * str)
 
 void UARTmsgAccueil(void)
 {
-    UARTprintTerm("\n\r===========================================================================\n");
-    UARTprintTerm("\rBievenue dans la gestion du module peltier\n");
-    UARTprintTerm("\r===========================================================================\n");
-    UARTprintTerm("\r===  Menu  ===\n");
-    UARTprintTerm("\rTouche 't' : Affichage de la température\n");
-    UARTprintTerm("\rTouche 'c' : Saisi de la consigne de température\n");
-    UARTprintTerm("\rTouche 'p' : Affichage de la température de consigne\n");
-    UARTprintTerm("\rTouche 'l' : Démarrer la régulation PWM\n");
-    UARTprintTerm("\rTouche 'm' : Arrêter la régulation PWM\n");
+    UARTprintTerm("\n\r=======================================================\n");
+    UARTprintTerm("\r\t\t\t===  Menu  ===\n");
+    UARTprintTerm("\r't' : Affichage de la temperature\n");
+    UARTprintTerm("\r'c' : Saisie de la consigne de temperature\n");
+    UARTprintTerm("\r'p' : Affichage de la temperature de consigne\n");
+    UARTprintTerm("\r'l' : Demarrer la regulation\n");
+    UARTprintTerm("\r'm' : Arreter la regulation\n");
     UARTprintTerm("\n\rVotre choix ? ");
+}
+
+void UARTmsgSelReg(void)
+{
+  int choix;
+  UARTprintTerm("\n\r=======================================================\n");
+  UARTprintTerm("\r\t\t\t===  Mode de regulation  ===\n");
+  UARTprintTerm("\r'1' : Regulation PID\n");
+  UARTprintTerm("\r'2' : Regulation Tout ou Rien\n");
+
+  
 }

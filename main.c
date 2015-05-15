@@ -8,7 +8,7 @@
 #include <__cross_studio_io.h>
 
 
-int consigneInt = 50;
+int consigneInt = 25;
 float consigneFloat;
 int e = 0;
 unsigned short retour;
@@ -54,11 +54,9 @@ void main(void)
 
             if(flagEcritureTemp == 1)
             {
-              sprintf(conversionStr, "%f", temp);
+              sprintf(conversionStr, "La temperature est de : %f ('s' pour arreter l'affichage)\n\r", temp);
               UARTprintTerm(conversionStr);
-              flagEcritureTemp = 0;
-              UARTprintTerm("\n");
-              UARTmsgAccueil();
+              //UARTprintTerm("\n");
             }
             consigneFloat = consigneInt * 1.0;
             //REG_OnOff();
@@ -83,6 +81,8 @@ void usart0_rx (void) __interrupt[USART0RX_VECTOR]
   int z;
   static int indiceConsigne = -1;
   const char * tempStr;
+  float consigneFloat;
+  int choix;
 
   if(indiceConsigne == 1)  //lors de la saisie d'une nouvelle consigne, il y a une interruption par appuie sur une touche pour la saisie, donc on traite separement chaque chiffre
   {
@@ -105,9 +105,12 @@ void usart0_rx (void) __interrupt[USART0RX_VECTOR]
 
   if(RXBUF0 == 't')   //si c'est l'affichage de la temperature, on active le flag de l'affichage dans la fonction main
   {
-      //UARTprintTerm("\n\r                                                         \r");
       flagEcritureTemp = 1;
-
+  }
+  else if(RXBUF0 == 's') // Arret affichage temp
+  {
+      flagEcritureTemp = 0;
+      UARTmsgAccueil();
   }
   else if(RXBUF0 == 'c')  //si c'est la prise d'une nouvelle consigne
   {
@@ -129,8 +132,14 @@ void usart0_rx (void) __interrupt[USART0RX_VECTOR]
       P1OUT |= 0x08;  //DRV593 pin shutdown ON
       TACTL |= MC1 + MC0;  //reset counter (MC0) et up mode (MC1)
       TXBUF0 = RXBUF0; //réaffiche valeur saisi par l'utilisateur
-      UARTprintTerm("\n\rDémarrage de la régulation PWM...\n");
-      UARTmsgAccueil();
+      UARTmsgSelReg();
+  
+      consigneFloat = consigneInt * 1.0;
+      scanf("%d", &choix);
+      if(choix == 1)
+        regulation(consigneFloat);
+      else if(choix == 2)
+        regToR(consigneFloat);
   }
   else if(RXBUF0 == 'm') //si c'est valeur 'm', on met arrete pwm
   {

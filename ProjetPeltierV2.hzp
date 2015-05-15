@@ -21,7 +21,7 @@
         <configuration Name="Common" file_type="Section Placement" />
       </file>
     </folder>
-    <configuration linker_scanf_fp_enabled="Yes" linker_printf_fp_enabled="Yes" Name="Debug" />
+    <configuration linker_scanf_fp_enabled="Yes" linker_printf_fp_enabled="Yes" linker_scanf_character_group_matching_enabled="Yes" Name="Debug" />
   </project>
   <configuration build_debug_information="Yes" Name="Debug" />
   <configuration optimize_jump_chaining="Yes" optimize_block_locality="Yes" optimize_tail_merging="Yes" c_preprocessor_definitions="NDEBUG" optimize_cross_calling="Standard" build_debug_information="No" optimize_jump_threading="Yes" Name="Release" optimize_dead_code="Yes" optimize_cross_jumping="Yes" optimize_copy_propagation="Yes" />
