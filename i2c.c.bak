@@ -58,7 +58,7 @@ float readTmp(unsigned char addr)
 	if ( signe ) tmp |= 0xF800;	
 	temp = tmp;
 	temp = temp * INC_12;
-        //temp /= 10;
+        temp /= 10;
     }
     else
     {

@@ -1,6 +1,7 @@
 #include "i2c.h"
 #include "pwm.h"
 #include "uart.h"
+#include "regulation.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <msp430x14x.h>
@@ -45,18 +46,10 @@ void main(void)
 
         initUART();
         UARTmsgAccueil();
-  
+        regulation(consigneInt);
         for(;;)
         {
             temp = readTmp(0x94);   //lit la température du capteur TMP101, avec l'adresse de l'esclave
-            erreur = temp;  //distincte l'erreur et la temperature
-            if (erreur > 0)
-            {
-                  debug_printf("%f\n", temp);
-                  PWM(350);
-            }
-            i++;
-            if(!(i%1000)){debug_printf("%f\n", temp);}
 
             if(flagEcritureTemp == 1)
             {
