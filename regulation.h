@@ -2,10 +2,12 @@
 #define __REGULATION__
 
 void REG_Init();
-void REG_OnOff();
 void REG_Tor(float);
 void REG_Pid(float);
 void REG_PidClear(void);
+
+void regToR(float consigne);
+void regulation(float consigne);
 
 extern float prev_temp;
 extern unsigned char marche;

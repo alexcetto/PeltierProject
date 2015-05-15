@@ -8,86 +8,83 @@ SYMBOLS BY NAME
     13b8 CODE       _I2C_Stop           
     1482 CODE       _I2C_Write          
     149e CODE       _PWM_Init           
-    14e8 CODE       _REG_Consigne       
     14c6 CODE       _REG_PidClear       
-    16de CODE       _UARTmsgAccueil     
-    16c0 CODE       _UARTprintTerm      
+    1594 CODE       _UARTmsgAccueil     
+    1576 CODE       _UARTprintTerm      
      200 IDATA0     ___begin_IDATA0     
      206 UDATA0     ___begin_UDATA0     
-    2668 CODE       ___debug_catch_me_here
-    2b42 CODE       ___digit            
-    2670 CODE       ___do_debug_operation
-     25c UDATA0     ___end_UDATA0       
-    2c1a CODE       ___float32_add      
-    2dfe CODE       ___float32_div      
-    2ee4 CODE       ___float32_eq       
-    2ec8 CODE       ___float32_lt       
-    2d20 CODE       ___float32_mul      
-    2d14 CODE       ___float32_sub      
-    2f82 CODE       ___float32_to_int16 
-    3024 CODE       ___float32_to_int64 
-    3516 CONST      ___hex_lc           
-    3506 CONST      ___hex_uc           
-    26d8 CODE       ___int16_div        
-    26fe CODE       ___int16_mod        
-    2724 CODE       ___int16_mul        
-    2ef4 CODE       ___int16_to_float32 
-    26ae CODE       ___int32_mul        
-    2738 CODE       ___int64_lsl        
-    274a CODE       ___int64_lsr        
-    30ee CODE       ___isinf            
-    30ee CODE       ___isinff           
-    3116 CODE       ___isnan            
-    3116 CODE       ___isnanf           
-    2bb4 CODE       ___pow10            
-    294c CODE       ___strtoul          
-    279a CODE       ___uint16_div       
-    2f00 CODE       ___uint16_to_float32
-    2f0a CODE       ___uint16_to_float32_aux
-    27b2 CODE       ___uint32_div       
-    27c0 CODE       ___uint32_divmod    
-    27e8 CODE       ___uint32_mod       
-    27fa CODE       ___uint64_div       
-    283e CODE       ___uint64_divmod    
-    275e CODE       ___uint64_mod       
-    2f2a CODE       ___uint64_to_float32
-    17f8 CODE       ___vfprintf         
-    28e6 CODE       _abs                
-    2b8c CODE       _atoi               
+    251e CODE       ___debug_catch_me_here
+    29f8 CODE       ___digit            
+    2526 CODE       ___do_debug_operation
+     258 UDATA0     ___end_UDATA0       
+    2ad0 CODE       ___float32_add      
+    2cb4 CODE       ___float32_div      
+    2d9a CODE       ___float32_eq       
+    2d7e CODE       ___float32_lt       
+    2bd6 CODE       ___float32_mul      
+    2bca CODE       ___float32_sub      
+    2e38 CODE       ___float32_to_int16 
+    2ed4 CODE       ___float32_to_int64 
+    33c8 CONST      ___hex_lc           
+    33b8 CONST      ___hex_uc           
+    258e CODE       ___int16_div        
+    25b4 CODE       ___int16_mod        
+    25da CODE       ___int16_mul        
+    2daa CODE       ___int16_to_float32 
+    2564 CODE       ___int32_mul        
+    25ee CODE       ___int64_lsl        
+    2600 CODE       ___int64_lsr        
+    2f9e CODE       ___isinf            
+    2f9e CODE       ___isinff           
+    2fc6 CODE       ___isnan            
+    2fc6 CODE       ___isnanf           
+    2a6a CODE       ___pow10            
+    2802 CODE       ___strtoul          
+    2650 CODE       ___uint16_div       
+    2db6 CODE       ___uint16_to_float32
+    2dc0 CODE       ___uint16_to_float32_aux
+    2668 CODE       ___uint32_div       
+    2676 CODE       ___uint32_divmod    
+    269e CODE       ___uint32_mod       
+    26b0 CODE       ___uint64_div       
+    26f4 CODE       ___uint64_divmod    
+    2614 CODE       ___uint64_mod       
+    2de0 CODE       ___uint64_to_float32
+    16ae CODE       ___vfprintf         
+    279c CODE       _abs                
+    2a42 CODE       _atoi               
      23e UDATA0     _consigneFloat      
      200 IDATA0     _consigneInt        
      20c UDATA0     _conversionStr      
-     258 UDATA0     _dbgCntrlWord       
-     256 UDATA0     _dbgCommWord        
-    2690 CODE       _debug_printf       
-     24a UDATA0     _dt                 
-     242 UDATA0     _erreur             
-     25a UDATA0     _errno              
-    301e CODE       _fabs               
+     254 UDATA0     _dbgCntrlWord       
+     252 UDATA0     _dbgCommWord        
+    2546 CODE       _debug_printf       
+     246 UDATA0     _dt                 
+     256 UDATA0     _errno              
      202 IDATA0     _flagEcritureTemp   
-    2ffa CODE       _frexp              
+    2eb0 CODE       _frexp              
     144c CODE       _getByte            
-    168a CODE       _initUART           
-     24e UDATA0     _integrale          
-    291e CODE       _isdigit            
-    290a CODE       _islower            
-    2932 CODE       _isspace            
-    28f6 CODE       _isupper            
-    2fbe CODE       _ldexp              
+    1540 CODE       _initUART           
+     24a UDATA0     _integrale          
+    27d4 CODE       _isdigit            
+    27c0 CODE       _islower            
+    27e8 CODE       _isspace            
+    27ac CODE       _isupper            
+    2e74 CODE       _ldexp              
     1100 CODE       _main               
-    288a CODE       _memcpy             
-    289a CODE       _memset             
-     252 UDATA0     _prev_erreur        
-     246 UDATA0     _prev_temp          
+    2740 CODE       _memcpy             
+    2750 CODE       _memset             
+     24e UDATA0     _prev_erreur        
+     242 UDATA0     _prev_temp          
     1434 CODE       _readBite           
     12c6 CODE       _readTmp            
     13da CODE       _receive_ack        
-    151a CODE       _regulation         
+    14e8 CODE       _regToR             
     13f2 CODE       _sendAddr           
     13c6 CODE       _send_ack           
-    28aa CODE       _sprintf            
-    287a CODE       _strlen             
-    2a82 CODE       _strtol             
+    2760 CODE       _sprintf            
+    2730 CODE       _strlen             
+    2938 CODE       _strtol             
      208 UDATA0     _temp               
     11a8 CODE       _usart0_rx          
 
@@ -95,22 +92,21 @@ SYMBOLS BY NAME
 SYMBOLS BY VALUE
 
      200            RAM_Start_Address   
-     200 IDATA0     _consigneInt        
      200 IDATA0     ___begin_IDATA0     
+     200 IDATA0     _consigneInt        
      202 IDATA0     _flagEcritureTemp   
      206 UDATA0     ___begin_UDATA0     
      208 UDATA0     _temp               
      20c UDATA0     _conversionStr      
      23e UDATA0     _consigneFloat      
-     242 UDATA0     _erreur             
-     246 UDATA0     _prev_temp          
-     24a UDATA0     _dt                 
-     24e UDATA0     _integrale          
-     252 UDATA0     _prev_erreur        
-     256 UDATA0     _dbgCommWord        
-     258 UDATA0     _dbgCntrlWord       
-     25a UDATA0     _errno              
-     25c UDATA0     ___end_UDATA0       
+     242 UDATA0     _prev_temp          
+     246 UDATA0     _dt                 
+     24a UDATA0     _integrale          
+     24e UDATA0     _prev_erreur        
+     252 UDATA0     _dbgCommWord        
+     254 UDATA0     _dbgCntrlWord       
+     256 UDATA0     _errno              
+     258 UDATA0     ___end_UDATA0       
      800            RAM_Size            
     1100 CODE       _main               
     11a8 CODE       _usart0_rx          
@@ -126,60 +122,58 @@ SYMBOLS BY VALUE
     1490 CODE       _I2C_Read           
     149e CODE       _PWM_Init           
     14c6 CODE       _REG_PidClear       
-    14e8 CODE       _REG_Consigne       
-    151a CODE       _regulation         
-    168a CODE       _initUART           
-    16c0 CODE       _UARTprintTerm      
-    16de CODE       _UARTmsgAccueil     
-    17f8 CODE       ___vfprintf         
-    2668 CODE       ___debug_catch_me_here
-    2670 CODE       ___do_debug_operation
-    2690 CODE       _debug_printf       
-    26ae CODE       ___int32_mul        
-    26d8 CODE       ___int16_div        
-    26fe CODE       ___int16_mod        
-    2724 CODE       ___int16_mul        
-    2738 CODE       ___int64_lsl        
-    274a CODE       ___int64_lsr        
-    275e CODE       ___uint64_mod       
-    279a CODE       ___uint16_div       
-    27b2 CODE       ___uint32_div       
-    27c0 CODE       ___uint32_divmod    
-    27e8 CODE       ___uint32_mod       
-    27fa CODE       ___uint64_div       
-    283e CODE       ___uint64_divmod    
-    287a CODE       _strlen             
-    288a CODE       _memcpy             
-    289a CODE       _memset             
-    28aa CODE       _sprintf            
-    28e6 CODE       _abs                
-    28f6 CODE       _isupper            
-    290a CODE       _islower            
-    291e CODE       _isdigit            
-    2932 CODE       _isspace            
-    294c CODE       ___strtoul          
-    2a82 CODE       _strtol             
-    2b42 CODE       ___digit            
-    2b8c CODE       _atoi               
-    2bb4 CODE       ___pow10            
-    2c1a CODE       ___float32_add      
-    2d14 CODE       ___float32_sub      
-    2d20 CODE       ___float32_mul      
-    2dfe CODE       ___float32_div      
-    2ec8 CODE       ___float32_lt       
-    2ee4 CODE       ___float32_eq       
-    2ef4 CODE       ___int16_to_float32 
-    2f00 CODE       ___uint16_to_float32
-    2f0a CODE       ___uint16_to_float32_aux
-    2f2a CODE       ___uint64_to_float32
-    2f82 CODE       ___float32_to_int16 
-    2fbe CODE       _ldexp              
-    2ffa CODE       _frexp              
-    301e CODE       _fabs               
-    3024 CODE       ___float32_to_int64 
-    30ee CODE       ___isinff           
-    30ee CODE       ___isinf            
-    3116 CODE       ___isnan            
-    3116 CODE       ___isnanf           
-    3506 CONST      ___hex_uc           
-    3516 CONST      ___hex_lc           
+    14e8 CODE       _regToR             
+    1540 CODE       _initUART           
+    1576 CODE       _UARTprintTerm      
+    1594 CODE       _UARTmsgAccueil     
+    16ae CODE       ___vfprintf         
+    251e CODE       ___debug_catch_me_here
+    2526 CODE       ___do_debug_operation
+    2546 CODE       _debug_printf       
+    2564 CODE       ___int32_mul        
+    258e CODE       ___int16_div        
+    25b4 CODE       ___int16_mod        
+    25da CODE       ___int16_mul        
+    25ee CODE       ___int64_lsl        
+    2600 CODE       ___int64_lsr        
+    2614 CODE       ___uint64_mod       
+    2650 CODE       ___uint16_div       
+    2668 CODE       ___uint32_div       
+    2676 CODE       ___uint32_divmod    
+    269e CODE       ___uint32_mod       
+    26b0 CODE       ___uint64_div       
+    26f4 CODE       ___uint64_divmod    
+    2730 CODE       _strlen             
+    2740 CODE       _memcpy             
+    2750 CODE       _memset             
+    2760 CODE       _sprintf            
+    279c CODE       _abs                
+    27ac CODE       _isupper            
+    27c0 CODE       _islower            
+    27d4 CODE       _isdigit            
+    27e8 CODE       _isspace            
+    2802 CODE       ___strtoul          
+    2938 CODE       _strtol             
+    29f8 CODE       ___digit            
+    2a42 CODE       _atoi               
+    2a6a CODE       ___pow10            
+    2ad0 CODE       ___float32_add      
+    2bca CODE       ___float32_sub      
+    2bd6 CODE       ___float32_mul      
+    2cb4 CODE       ___float32_div      
+    2d7e CODE       ___float32_lt       
+    2d9a CODE       ___float32_eq       
+    2daa CODE       ___int16_to_float32 
+    2db6 CODE       ___uint16_to_float32
+    2dc0 CODE       ___uint16_to_float32_aux
+    2de0 CODE       ___uint64_to_float32
+    2e38 CODE       ___float32_to_int16 
+    2e74 CODE       _ldexp              
+    2eb0 CODE       _frexp              
+    2ed4 CODE       ___float32_to_int64 
+    2f9e CODE       ___isinf            
+    2f9e CODE       ___isinff           
+    2fc6 CODE       ___isnan            
+    2fc6 CODE       ___isnanf           
+    33b8 CONST      ___hex_uc           
+    33c8 CONST      ___hex_lc           

@@ -8,7 +8,7 @@
 #include <__cross_studio_io.h>
 
 
-int consigneInt = -5;
+int consigneInt = 50;
 float consigneFloat;
 int e = 0;
 unsigned short retour;
@@ -63,14 +63,15 @@ void main(void)
             consigneFloat = consigneInt * 1.0;
             //REG_OnOff();
             REG_PidClear();
-            regulation(consigneFloat);
 
-            //PWM(800);
+            //regulation(consigneFloat);
+            regToR(consigneFloat);
+            //PWM(10);
 
             i++;
             if(!(i%500))
             {
-              debug_printf("%f\n", temp);
+              debug_printf("Temp : %f\n", temp);
             }
           }
     

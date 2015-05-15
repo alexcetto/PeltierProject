@@ -31,26 +31,6 @@ void REG_PidClear() {
 	prev_temp = 0;
 }
 
-/* Allumage de la régulation, et du driver Peltier */
-void REG_OnOff()
-{
-
-/* Le chauffage/refroidissement ne sera déclenché que 
-si le module est en marche */
-	if ( marche == 1 ) {
-		P1OUT &= ~BIT1;
-		P1OUT |= BIT3;
-		REG_PidClear();
-	}
-	else {	
-		P1OUT &= ~BIT3;
-		P1OUT |= BIT1;
-		REG_PidClear();
-	}	
-
-	return;
-}
-
 /* Application de la commande */
 void REG_Consigne(int consigne)
 {	
@@ -65,6 +45,21 @@ void REG_Consigne(int consigne)
 }
 
 
+void regToR(float consigne)
+{
+  float CurrentTemp;
+
+  CurrentTemp = readTmp(0x94);
+  if(CurrentTemp < consigne)
+    CCR1 = 700;
+  else if(CurrentTemp > consigne)
+    CCR1 = 200;
+  else
+    CCR1 = 500;
+
+  return;
+}
+
 void regulation(float consigne){
     char tmpStr[10];
     float CurrentTemp;
@@ -76,9 +71,9 @@ void regulation(float consigne){
 
 // Méthode heuristique de ZIEGLER NICHOLS
 			
-    Kp = 60;
-    Ki = 240;
-    Kd = 0.5;
+    Kp = 35;
+    Ki = 1.2;
+    Kd = 0.45;
     dt = 0.301; //3915.5;
   
     //debug_printf("%f\n", consigne);
@@ -98,7 +93,7 @@ void regulation(float consigne){
     sortie = ( (Kp*erreur) + (Ki*integrale) + (Kd*derive) );
 
 
-    debug_printf("%d\n", sortie);
+    debug_printf("Sortie %d\n", sortie);
     
     // PWM INIT A REMETTRE APRES
     //REG_OnOff();
