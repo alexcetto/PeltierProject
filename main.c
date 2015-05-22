@@ -54,7 +54,9 @@ void main(void)
 
             if(flagEcritureTemp == 1)
             {
-              sprintf(conversionStr, "Temperature : %f ('s' => Stop)\n\r", temp);
+            //\033[2J\033[1;1H
+              //sprintf(conversionStr, "Temperature : %f ('s' => Stop)\r", temp);
+              sprintf(conversionStr, "\r%f;\n", temp);
               UARTprintTerm(conversionStr);
               //UARTprintTerm("\n");
             }

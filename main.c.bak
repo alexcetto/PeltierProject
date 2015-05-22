@@ -54,7 +54,9 @@ void main(void)
 
             if(flagEcritureTemp == 1)
             {
-              sprintf(conversionStr, "La temperature est de : %f ('s' pour arreter l'affichage)\n\r", temp);
+            //\033[2J\033[1;1H
+              //sprintf(conversionStr, "Temperature : %f ('s' => Stop)\r", temp);
+              sprintf(conversionStr, "\n%f;", temp);
               UARTprintTerm(conversionStr);
               //UARTprintTerm("\n");
             }

@@ -25,8 +25,8 @@ SYMBOLS BY NAME
     2d7a CODE       ___float32_sub      
     2fe8 CODE       ___float32_to_int16 
     308a CODE       ___float32_to_int64 
-    3506 CONST      ___hex_lc           
-    34f6 CONST      ___hex_uc           
+    34ee CONST      ___hex_lc           
+    34de CONST      ___hex_uc           
     273e CODE       ___int16_div        
     2764 CODE       ___int16_mod        
     278a CODE       ___int16_mul        
@@ -177,5 +177,5 @@ SYMBOLS BY VALUE
     3154 CODE       ___isinf            
     317c CODE       ___isnanf           
     317c CODE       ___isnan            
-    34f6 CONST      ___hex_uc           
-    3506 CONST      ___hex_lc           
+    34de CONST      ___hex_uc           
+    34ee CONST      ___hex_lc           
