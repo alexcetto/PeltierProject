@@ -1,8 +1,7 @@
 #ifndef __REGULATION__
 #define __REGULATION__
 
-void REG_Init();
-void REG_Tor(float);
+void regTor(float);
 void REG_Pid(float);
 void REG_PidClear(void);
 

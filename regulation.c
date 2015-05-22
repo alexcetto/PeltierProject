@@ -93,7 +93,7 @@ void regulation(float consigne){
     sortie = ( (Kp*erreur) + (Ki*integrale) + (Kd*derive) );
 
 
-    debug_printf("Sortie %d\n", sortie);
+    //debug_printf("Sortie %d\n", sortie);
     
     // PWM INIT A REMETTRE APRES
     //REG_OnOff();

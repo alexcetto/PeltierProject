@@ -40,8 +40,9 @@ void UARTmsgAccueil(void)
     UARTprintTerm("\r't' : Affichage de la temperature\n");
     UARTprintTerm("\r'c' : Saisie de la consigne de temperature\n");
     UARTprintTerm("\r'p' : Affichage de la temperature de consigne\n");
-    UARTprintTerm("\r'l' : Demarrer la regulation\n");
-    UARTprintTerm("\r'm' : Arreter la regulation\n");
+    UARTprintTerm("\r'l' : Regulation PID\n");
+    UARTprintTerm("\r'm' : Regulation ToR\n");
+    UARTprintTerm("\r'n' : Stoper regulation\n");
     UARTprintTerm("\n\rVotre choix ? ");
 }
 

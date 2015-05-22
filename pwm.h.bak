@@ -3,5 +3,6 @@
 
 void PWM_Init(void);
 void PWM(int);
+void PWM_Stop(void)
 
 #endif

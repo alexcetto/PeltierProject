@@ -16,3 +16,9 @@ void PWM(int val)
 {
   CCR1 = val;
 }
+
+void PWM_Stop(void)
+{
+  CCR1 = 499;
+  P1OUT &= !BIT3;                               //DRV593 pin shutdown OFF
+}
