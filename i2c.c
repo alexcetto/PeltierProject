@@ -6,6 +6,11 @@
 #define INC_12    0.625
 #define SHIFT_12  0
 
+/* Lecture de la tempÃ©rature
+ * @param:  prend l'adresse du TMP101
+ *
+ * @return: retourne la tempÃ©rature en simple prÃ©cision
+ */
 float readTmp(unsigned char addr)
 {
     int temp = 0;
@@ -18,22 +23,22 @@ float readTmp(unsigned char addr)
     //On passe en mode ecriture, le maitre va communiquer avec l'esclave pour lui envoyer l'adresse
     I2C_Write();
 
-    //prise de controle du bus par le maitre (condition de départ) 
+    //prise de controle du bus par le maitre (condition de dï¿½part) 
     I2C_StartCond();
 
-    //adresse de l'esclave avec lequel on veut communiquer transmis sur le bus, on précise, que l'on veut lire en mettant le bit de poids faible à 1.
+    //adresse de l'esclave avec lequel on veut communiquer transmis sur le bus, on prï¿½cise, que l'on veut lire en mettant le bit de poids faible ï¿½ 1.
     addr |= 0x01;
     sendAddr(addr);
 
 
-    // Passez en mode lecture pour recevoir ACK ainsi que les données
+    // Passez en mode lecture pour recevoir ACK ainsi que les donnï¿½es
     I2C_Read();
 
-    if (receive_ack() == 0)  //si on a recu l'ACK, on récupére le contenu des registres 1 & 2 du registre de température
+    if (receive_ack() == 0)  //si on a recu l'ACK, on rï¿½cupï¿½re le contenu des registres 1 & 2 du registre de tempï¿½rature
     {
         bytes[0] = getByte();
 
-        // Passez en mode ecriture, pour donner l'ACK qu'on a bien lu la donnée
+        // Passez en mode ecriture, pour donner l'ACK qu'on a bien lu la donnï¿½e
         I2C_Write();
 
         send_ack();
@@ -43,7 +48,7 @@ float readTmp(unsigned char addr)
 
         bytes[1] = getByte();
 
-        // Passez en mode ecriture, pour donner l'ACK qu'on a bien lu la donnée
+        // Passez en mode ecriture, pour donner l'ACK qu'on a bien lu la donnï¿½e
         I2C_Write();
         send_ack();
 
@@ -62,7 +67,7 @@ float readTmp(unsigned char addr)
     }
     else
     {
-        temp = 1;  //erreur dans la lecture, je prend 1, car dans notre appli on est pas cencé descendre aussi bas en température
+        temp = 1;  //erreur dans la lecture, je prend 1, car dans notre appli on est pas cencï¿½ descendre aussi bas en tempï¿½rature
     }
     
     return temp;
@@ -70,10 +75,10 @@ float readTmp(unsigned char addr)
 
 void I2C_StartCond(void)
 {
-    //prise de controle du bus par le maitre (condition de départ) SCL1 et SDA1
+    //prise de controle du bus par le maitre (condition de dï¿½part) SCL1 et SDA1
     P1OUT |= BIT6;
     P1OUT |= BIT5;
-    //SDA passe à 0, alors que SCL est toujours à 1, puis SCL passe à 0
+    //SDA passe ï¿½ 0, alors que SCL est toujours ï¿½ 1, puis SCL passe ï¿½ 0
     P1OUT |= BIT6;
     P1OUT &= ~BIT5;
     P1OUT &= ~BIT6;
@@ -96,19 +101,19 @@ unsigned char receive_ack(void)
 {
     unsigned char acknowledge;
     P1OUT |= BIT6;  //continue de faire fonctionner la clock
-    acknowledge = (P1IN  &BIT5);   //récupére ce que l'esclave a envoyé sur SDA, si c'est un 0, renvoie de l'ACK, sinon erreur
+    acknowledge = (P1IN  &BIT5);   //rï¿½cupï¿½re ce que l'esclave a envoyï¿½ sur SDA, si c'est un 0, renvoie de l'ACK, sinon erreur
     P1OUT &= ~BIT6;  //continue de faire fonctionner la clock
     return acknowledge;
 }
 
 void sendAddr(unsigned char octet)
-{/*principe : Après la conditiond de départ imposée, on met sur SDA, le bit de poids fort à transmettre, pour valider la donnée, on passe SCL à 1, puis on recommence*/
+{/*principe : Aprï¿½s la conditiond de dï¿½part imposï¿½e, on met sur SDA, le bit de poids fort ï¿½ transmettre, pour valider la donnï¿½e, on passe SCL ï¿½ 1, puis on recommence*/
     	unsigned int BitCnt;
  
     	for(BitCnt=0;BitCnt < 8;BitCnt = BitCnt + 1)
     	{
-        	P1OUT &= ~BIT6;  //lorsque SCL reviens à 0, on peut transmettre notre bit sur SDA
-        	if((octet << BitCnt)&0x80)  //regarde le bit de poids fort,s'il vaut 1, envoie1 sinon 0, a chaque tour de boucle on décale
+        	P1OUT &= ~BIT6;  //lorsque SCL reviens ï¿½ 0, on peut transmettre notre bit sur SDA
+        	if((octet << BitCnt)&0x80)  //regarde le bit de poids fort,s'il vaut 1, envoie1 sinon 0, a chaque tour de boucle on dï¿½cale
         	{
             	P1OUT |= BIT5;
         	}
@@ -116,9 +121,9 @@ void sendAddr(unsigned char octet)
         	{
             	P1OUT &= ~BIT5;
         	}
-        	P1OUT |= BIT6; // valide la donné sur SDA, en mettant SCL à 1
+        	P1OUT |= BIT6; // valide la donnï¿½ sur SDA, en mettant SCL ï¿½ 1
    	}
-    	P1OUT &= ~BIT6;  //a la fin de l'envoie SCL et SDA repasse à 0
+    	P1OUT &= ~BIT6;  //a la fin de l'envoie SCL et SDA repasse ï¿½ 0
         P1OUT &= ~BIT5;
 }
 
@@ -126,7 +131,7 @@ unsigned char readBite(void)
 {
     unsigned char bit;
     P1OUT |= BIT6;
-    bit = (P1IN  &BIT5);   //récupere la valeur du bit sur la ligne SDA
+    bit = (P1IN  &BIT5);   //rï¿½cupere la valeur du bit sur la ligne SDA
     P1OUT &= ~BIT6;
     return bit;
 }
@@ -140,7 +145,7 @@ unsigned char getByte(void)
     	for(i = 7;i >=0;i--)  //remplis l'octet lu
     	{
         	bit = readBite();  //lis le bit sur SDA
-        	if(bit)  //si c'est un 1, on l'écrit a l'emplacement, le 0 s'en déduit automatiquement, la ou on a pas mis de 1
+        	if(bit)  //si c'est un 1, on l'ï¿½crit a l'emplacement, le 0 s'en dï¿½duit automatiquement, la ou on a pas mis de 1
         	{
                   byte |= (1 << i);
         	}
@@ -155,9 +160,9 @@ void I2C_Write(void)
     P1DIR |= BIT5; // sda a 1 en sortie
 }
 
-//On passe en mode lecture, l'esclave va répondre en envoyant ACK et la température
+//On passe en mode lecture, l'esclave va rï¿½pondre en envoyant ACK et la tempï¿½rature
 void I2C_Read(void)
 {
     P1DIR |= BIT6; //SCL en sortie (clock)
-    P1DIR &= ~BIT5;   //SDA en entrée, va lire ce que l'esclave envoie
+    P1DIR &= ~BIT5;   //SDA en entrï¿½e, va lire ce que l'esclave envoie
 }
