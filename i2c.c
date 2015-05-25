@@ -67,10 +67,10 @@ float readTemp(unsigned char addr) {
  * SDA = BIT5
  */
 void I2C_StartCond(void) {
-    P1OUT |= BIT6;          // SDA & SCL to 1 to take control of the bus
+    P1OUT |= BIT6;                                      // SDA & SCL to 1 to take control of the bus
     P1OUT |= BIT5;
 
-    P1OUT |= BIT6;          // SDA = 0, SCL 1 then SCL O to signal the master is taking control
+    P1OUT |= BIT6;                                      // SDA = 0, SCL 1 then SCL O to signal the master is taking control
     P1OUT &= ~BIT5;
     P1OUT &= ~BIT6;
 }
@@ -172,8 +172,8 @@ unsigned char getByte(void) {
  * i2c in write mode, the master will communicate with the slave to send the address
  */
 void I2C_Write(void) {
-    P1DIR |= BIT6; //scl a 1 en sortie
-    P1DIR |= BIT5; // sda a 1 en sortie
+    P1DIR |= BIT6;                                      // SCL = 1
+    P1DIR |= BIT5;                                      // SDA = 1
 }
 
 //On passe en mode lecture, l'esclave va r�pondre en envoyant ACK et la temp�rature

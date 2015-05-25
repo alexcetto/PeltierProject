@@ -2,7 +2,7 @@
 #define __UART__
 
 void initUART(void);
-void UARTprintTerm(const char * str);
+void UARTToTerminal(const char * str);
 void UARTmsgAccueil(void);
 
 #endif
