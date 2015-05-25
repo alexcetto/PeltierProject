@@ -50,7 +50,7 @@ void main(void)
         //regulation(consigneInt);
         for(;;)
         {
-            temp = readTmp(0x94);   //lit la température du capteur TMP101, avec l'adresse de l'esclave
+            temp = readTemp(0x94);   //lit la tempï¿½rature du capteur TMP101, avec l'adresse de l'esclave
 
             if(flagEcritureTemp == 1)
             {
@@ -92,11 +92,11 @@ void usart0_rx (void) __interrupt[USART0RX_VECTOR]
   {
         recupConsigne[indiceConsigne] = RXBUF0;  //conserve dans un tableau la valeur saisie
         indiceConsigne = -1;  //re-initialise la prise d'une consigne, dans le cas plus tard d'une nouvelle saisie de consigne  
-        TXBUF0 = RXBUF0; //réaffiche valeur saisi par l'utilisateur
+        TXBUF0 = RXBUF0; //rï¿½affiche valeur saisi par l'utilisateur
         consigneInt = atoi(recupConsigne);  //transforme la valeur en char en int
         consigneFloat = consigneInt * 1.0;
         UARTprintTerm("\n\r                                                         \r");
-        sprintf(conversionStr, "\rLa température de consigne est désormais  de : %f°C\n\n", consigneFloat);  //reaffiche la nouvelle consigne que l'utilisateur vient de saisir
+        sprintf(conversionStr, "\rLa tempï¿½rature de consigne est dï¿½sormais  de : %fï¿½C\n\n", consigneFloat);  //reaffiche la nouvelle consigne que l'utilisateur vient de saisir
         
         UARTprintTerm(conversionStr);
         UARTmsgAccueil();  //reffiche menu
@@ -147,7 +147,7 @@ void usart0_rx (void) __interrupt[USART0RX_VECTOR]
   }
   else if(RXBUF0 == 'p')   //si c'est l'affichage de la consigne, on l'affiche
   {
-          sprintf(conversionStr, "\rLa température de consigne est actuellement  de : %f°C\n\n", consigneFloat);
+          sprintf(conversionStr, "\rLa tempï¿½rature de consigne est actuellement  de : %fï¿½C\n\n", consigneFloat);
           UARTprintTerm(conversionStr);     
           UARTmsgAccueil();
   }

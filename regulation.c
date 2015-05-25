@@ -7,9 +7,9 @@
 Tous les x millisecondes, faire :
     erreur = consigne - mesure;
     somme_erreurs += erreur;
-    variation_erreur = erreur - erreur_précédente;
+    variation_erreur = erreur - erreur_prï¿½cï¿½dente;
     commande = Kp * erreur + Ki * somme_erreurs + Kd * variation_erreur;
-    erreur_précédente = erreur
+    erreur_prï¿½cï¿½dente = erreur
 */
 /* Variables globales */
 unsigned char marche;
@@ -23,7 +23,7 @@ float dt;
 float prev_temp;
 float erreur;
 
-/* Remise à 0 des valeurs du PID */
+/* Remise ï¿½ 0 des valeurs du PID */
 void REG_PidClear() {
 	prev_erreur = 0;
 	integrale = 0;
@@ -49,7 +49,7 @@ void regToR(float consigne)
 {
   float CurrentTemp;
 
-  CurrentTemp = readTmp(0x94);
+  CurrentTemp = readTemp(0x94);
   if(CurrentTemp < consigne)
     CCR1 = 700;
   else if(CurrentTemp > consigne)
@@ -67,9 +67,9 @@ void regulation(float consigne){
 
     int sortie;
   
-    CurrentTemp = readTmp(0x94);
+    CurrentTemp = readTemp(0x94);
 
-// Méthode heuristique de ZIEGLER NICHOLS
+// Mï¿½thode heuristique de ZIEGLER NICHOLS
 			
     Kp = 35;
     Ki = 1.2;
@@ -83,13 +83,13 @@ void regulation(float consigne){
     derive = (prev_erreur - erreur);
 
     //debug_printf("erreur : %f\nintegrale : %f\nderive : %f\n", erreur, integrale, derive);
-    // Test division par zéro
+    // Test division par zï¿½ro
     if ( fabs(derive) > 10e-4 ) 
             derive = derive/dt;
     else
             derive = 0.0;
 
-    // Evaluation de la consigne via méthode KN
+    // Evaluation de la consigne via mï¿½thode KN
     sortie = ( (Kp*erreur) + (Ki*integrale) + (Kd*derive) );
 
 
