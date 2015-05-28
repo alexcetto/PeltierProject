@@ -3,7 +3,7 @@
 
 void regTor(float);
 void REG_PidClear(void);
-
+void REG_Consigne(int consigne);
 void regToR(float consigne);
 void regulation(float consigne);
 

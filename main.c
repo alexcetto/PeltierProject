@@ -18,9 +18,8 @@ float temp;
 void main(void)
 {
     const char * tempStr;
-	int erreur;
-
-	WDTCTL = WDTPW + WDTHOLD;                                       // Stop watchdog
+    int i = 0;
+    WDTCTL = WDTPW + WDTHOLD;                                       // Stop watchdog
 
     PWM_Init();
 
@@ -31,8 +30,10 @@ void main(void)
         temp = readTemp(0x94);                                      // Read the temperature of the module
 
         if(flagEcritureTemp == 1) {                                 // If flag (set by interrupt in USART0_TX function),
-            sprintf(conversionStr, "\r%f;\n", temp);                // sends continuously the temp to the PC terminal
-            UARTToTerminal(conversionStr);
+            if(!(i %25)){
+                sprintf(conversionStr, "\r%f;\n", temp);            // sends continuously the temp to the PC terminal
+                UARTToTerminal(conversionStr);
+            }
         }
 
         if(flagRegType == 0) {                                      // If flag (set by interrupt in USART0_TX function),
@@ -45,6 +46,7 @@ void main(void)
         } else {
             PWM_Stop();                                             // Stops all regulation
         }
+        i+=1;
     }
     
 }

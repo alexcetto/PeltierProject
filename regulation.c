@@ -15,8 +15,20 @@ float dt;
 float prev_temp;
 float erreur;
 
+void REG_Consigne(int consigne)
+{	
+	if (fabs(consigne) < 499 )
+		CCR1 = 500 + consigne;
+	else
+		if ( consigne > 0 )		
+			CCR1 = 990;
+		else
+			CCR1 = 10;
+
+}
+
 /* Reset to 0 the PID values */
-void REG_PidClear() {
+void REG_PidClear(void) {
 	prev_erreur = 0;
 	integrale = 0;
 	dt = 0;
@@ -60,9 +72,9 @@ void regulation(float consigne){
   
     CurrentTemp = readTemp(0x94);
                                                                     // Heuristic method of ZIEGLER NICHOLS
-    Kp = 35;
-    Ki = 1.2;
-    Kd = 0.45;
+    Kp = 168;
+    Ki = 0.5;
+    Kd = 0.125;
     dt = 0.301;
 
     erreur = consigne - CurrentTemp;
