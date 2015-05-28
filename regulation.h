@@ -2,7 +2,6 @@
 #define __REGULATION__
 
 void regTor(float);
-void REG_Pid(float);
 void REG_PidClear(void);
 
 void regToR(float consigne);

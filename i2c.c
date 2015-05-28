@@ -13,7 +13,7 @@
  */
 float readTemp(unsigned char addr) {
     int temp = 0;
-    unsigned char bytes[] = {0x00, 0x00};              // Besoin de 16 bits, le tmp101 envoie 12 bits de données
+    unsigned char bytes[] = {0x00, 0x00};               // Besoin de 16 bits, le tmp101 envoie 12 bits de données
     char signe;
     int length, tmp;
 
@@ -181,6 +181,6 @@ void I2C_Write(void) {
  * @brief : write mode, the slave sends ACK and temperature
  */
 void I2C_Read(void) {
-    P1DIR |= BIT6;                                  // SCL = 1, clock
-    P1DIR &= ~BIT5;                                 // SDA = 0, listenning
+    P1DIR |= BIT6;                                      // SCL = 1, clock
+    P1DIR &= ~BIT5;                                     // SDA = 0, listenning
 }

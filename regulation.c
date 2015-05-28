@@ -2,16 +2,8 @@
 #include <math.h>
 #include "i2c.h"
 #include <__cross_studio_io.h>
-/*
---- Algo ---
-Tous les x millisecondes, faire :
-    erreur = consigne - mesure;
-    somme_erreurs += erreur;
-    variation_erreur = erreur - erreur_pr�c�dente;
-    commande = Kp * erreur + Ki * somme_erreurs + Kd * variation_erreur;
-    erreur_pr�c�dente = erreur
-*/
-/* Variables globales */
+
+                                                                    // Globals
 unsigned char marche;
 unsigned char chauffage;
 unsigned char TorOrPid;
@@ -23,7 +15,7 @@ float dt;
 float prev_temp;
 float erreur;
 
-/* Remise � 0 des valeurs du PID */
+/* Reset to 0 the PID values */
 void REG_PidClear() {
 	prev_erreur = 0;
 	integrale = 0;
@@ -31,20 +23,9 @@ void REG_PidClear() {
 	prev_temp = 0;
 }
 
-/* Application de la commande */
-void REG_Consigne(int consigne)
-{	
-	if (abs(consigne) < 499 )
-		CCR1 = 500 + consigne;
-	else
-		if ( consigne > 0 )		
-			CCR1 = 990;
-		else
-			CCR1 = 10;
-
-}
-
-
+/*
+ * @brief : regulation by All or nothing method.
+ */
 void regToR(float consigne)
 {
   float CurrentTemp;
@@ -60,51 +41,43 @@ void regToR(float consigne)
   return;
 }
 
+
+/*
+ * @ brief : automatic regulation by PID
+--- Algo ---
+Every x ms do
+    erreur = consigne - mesure;
+    somme_erreurs += erreur;
+    variation_erreur = erreur - erreur_prec;
+    commande = Kp * erreur + Ki * somme_erreurs + Kd * variation_erreur;
+    erreur_prec = erreur
+*/
 void regulation(float consigne){
     char tmpStr[10];
     float CurrentTemp;
     float Kp, Ki, Kd, derive;
-
     int sortie;
   
     CurrentTemp = readTemp(0x94);
-
-// M�thode heuristique de ZIEGLER NICHOLS
-			
+                                                                    // Heuristic method of ZIEGLER NICHOLS
     Kp = 35;
     Ki = 1.2;
     Kd = 0.45;
-    dt = 0.301; //3915.5;
-  
-    //debug_printf("%f\n", consigne);
+    dt = 0.301;
 
     erreur = consigne - CurrentTemp;
     integrale = integrale + erreur*dt;
     derive = (prev_erreur - erreur);
 
-    //debug_printf("erreur : %f\nintegrale : %f\nderive : %f\n", erreur, integrale, derive);
-    // Test division par z�ro
-    if ( fabs(derive) > 10e-4 ) 
-            derive = derive/dt;
-    else
-            derive = 0.0;
 
-    // Evaluation de la consigne via m�thode KN
+    derive = (fabs(derive) > 10e-4) ? derive/dt : 0.0;
+
     sortie = ( (Kp*erreur) + (Ki*integrale) + (Kd*derive) );
 
-
-    //debug_printf("Sortie %d\n", sortie);
-    
-    // PWM INIT A REMETTRE APRES
-    //REG_OnOff();
     REG_PidClear();
     REG_Consigne(sortie);
-
-    //debug_printf("Sortie : %d\n", sortie);
-	
     prev_erreur = erreur;
 
     return;
-
 }
 
