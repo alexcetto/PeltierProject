@@ -51,7 +51,7 @@ void regToR(float consigne)
 
   CurrentTemp = readTmp(0x94);
   if(CurrentTemp < consigne)
-    CCR1 = 700;
+    CCR1 = 999;
   else if(CurrentTemp > consigne)
     CCR1 = 200;
   else
@@ -71,9 +71,9 @@ void regulation(float consigne){
 
 // Méthode heuristique de ZIEGLER NICHOLS
 			
-    Kp = 35;
-    Ki = 1.2;
-    Kd = 0.45;
+    Kp = 55.2;
+    Ki = 1;
+    Kd = 0.25;
     dt = 0.301; //3915.5;
   
     //debug_printf("%f\n", consigne);
